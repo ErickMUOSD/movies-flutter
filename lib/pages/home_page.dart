@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/providers/movie_provider.dart';
 
 import 'package:movies/widgets/swiper_card_widget.dart';
 
@@ -7,6 +8,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final moviesProvider = MoviesProvider();
+    moviesProvider.getNowPlaying();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

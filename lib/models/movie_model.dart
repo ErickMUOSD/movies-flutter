@@ -1,9 +1,14 @@
 class Movies {
-  List<MovieModel>? movies;
+  List<MovieModel>? items = [];
   Movies();
 
   Movies.fromJsonList(List<dynamic> jsonList) {
-    if (jsonList.isEmpty) {}
+    if (jsonList.isNotEmpty) {
+      for (var item in jsonList) {
+        final movie = MovieModel.fromJsonMap(item);
+        items!.add(movie);
+      }
+    }
   }
 }
 
