@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:movies/models/movie_model.dart';
 import 'package:movies/providers/movie_provider.dart';
 
 import 'package:movies/widgets/swiper_card_widget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
+  final moviesProvider = MoviesProvider();
   @override
   Widget build(BuildContext context) {
-    final moviesProvider = MoviesProvider();
-    moviesProvider.getNowPlaying();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -22,12 +21,28 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
-        body: Column(children: [
-          SwiperCard(
-            movies: [1, 2, 3, 5],
-          ),
+        body: Column(children: <Widget>[
+          swiperCard(),
         ]),
       ),
+    );
+  }
+
+  Widget swiperCard() {
+    return FutureBuilder(
+      future: moviesProvider.getNowPlaying(),
+      initialData: [],
+      builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+        if (snapshot.hasData) {
+          return SwiperCard(
+            movies: snapshot.data!,
+          );
+        } else {
+          return Container(
+              height: 400,
+              child: const Center(child: CircularProgressIndicator()));
+        }
+      },
     );
   }
 }

@@ -1,18 +1,18 @@
 class Movies {
-  List<MovieModel>? items = [];
+  List<Movie>? items = [];
   Movies();
 
   Movies.fromJsonList(List<dynamic> jsonList) {
     if (jsonList.isNotEmpty) {
       for (var item in jsonList) {
-        final movie = MovieModel.fromJsonMap(item);
+        final movie = Movie.fromJsonMap(item);
         items!.add(movie);
       }
     }
   }
 }
 
-class MovieModel {
+class Movie {
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -28,7 +28,7 @@ class MovieModel {
   double? voteAverage;
   int? voteCount;
 
-  MovieModel({
+  Movie({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -45,20 +45,28 @@ class MovieModel {
     this.voteCount,
   });
 
-  MovieModel.fromJsonMap(Map<String, dynamic> json) {
-    adult = json['adult'];
-    backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'].cast<int>();
+  Movie.fromJsonMap(Map<String, dynamic> json) {
+    voteCount = json['vote_count'];
     id = json['id'];
-    originalLanguage = json['original_language'];
-    originalTitle = json['original_title'];
-    overview = json['overview'];
-    popularity = json['popularity'] / 1;
-    posterPath = json['poster_path'];
-    releaseDate = json['release_date'];
-    title = json['title'];
     video = json['video'];
     voteAverage = json['vote_average'] / 1;
-    voteCount = json['vote_count'];
+    title = json['title'];
+    popularity = json['popularity'] / 1;
+    posterPath = json['poster_path'];
+    originalLanguage = json['original_language'];
+    originalTitle = json['original_title'];
+    genreIds = json['genre_ids'].cast<int>();
+    backdropPath = json['backdrop_path'];
+    adult = json['adult'];
+    overview = json['overview'];
+    releaseDate = json['release_date'];
+  }
+
+  String getPosterImg() {
+    if (posterPath != null) {
+      return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    } else {
+      return 'https://www.lasallevictoria.edu.mx/wp-content/uploads/woocommerce-placeholder.png';
+    }
   }
 }

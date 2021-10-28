@@ -9,7 +9,7 @@ class MoviesProvider {
   final String _url = 'api.themoviedb.org';
   final String _languaje = 'es-ES';
 
-  Future<List<MovieModel>> getNowPlaying() async {
+  Future<List<Movie>> getNowPlaying() async {
     final url = Uri.https(_url, '3/movie/now_playing', {
       'api_key': _apiKey,
       'languaje': _languaje,
