@@ -3,6 +3,7 @@ import 'package:movies/models/movie_model.dart';
 import 'package:movies/providers/movie_provider.dart';
 
 import 'package:movies/widgets/swiper_card_widget.dart';
+import 'package:movies/widgets/swiper_casero.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: Column(children: <Widget>[
-          swiperCard(),
+          Center(child: swiperCard()),
         ]),
       ),
     );
@@ -34,9 +35,10 @@ class HomePage extends StatelessWidget {
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.hasData) {
-          return SwiperCard(
-            movies: snapshot.data!,
-          );
+          // return SwiperCard(
+          //   movies: snapshot.data,
+          // );
+          return SwiperCasero(movies: snapshot.data);
         } else {
           return Container(
               height: 400,
