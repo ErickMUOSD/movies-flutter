@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-
-import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:movies/models/movie_model.dart';
 import 'package:card_swiper/card_swiper.dart';
 
 class SwiperCard extends StatelessWidget {
   final List<dynamic>? movies;
 
-  SwiperCard({Key? key, required this.movies}) : super(key: key);
+  const SwiperCard({Key? key, required this.movies}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final widthScreen = MediaQuery.of(context).size.width;
     final heightScreen = MediaQuery.of(context).size.height;
     if (movies!.isNotEmpty) {
       return Container(
+        padding: const EdgeInsets.only(top: 10.0),
         width: double.infinity,
         height: heightScreen * 0.4,
         child: Swiper(
             layout: SwiperLayout.STACK,
-            itemWidth: 300.0,
+            itemWidth: 250.0,
             itemCount: movies!.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
@@ -33,7 +31,7 @@ class SwiperCard extends StatelessWidget {
             }),
       );
     } else {
-      return CircularProgressIndicator();
+      return const CircularProgressIndicator();
     }
   }
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies/models/movie_model.dart';
 import 'package:movies/providers/movie_provider.dart';
-
+import 'package:movies/widgets/movie_horizontal.dart';
 import 'package:movies/widgets/swiper_card_widget.dart';
-import 'package:movies/widgets/swiper_casero.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -22,9 +20,9 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
-        body: Column(children: <Widget>[
-          Center(child: swiperCard()),
-        ]),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[swiperCard(), _footer(context)]),
       ),
     );
   }
@@ -35,16 +33,42 @@ class HomePage extends StatelessWidget {
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.hasData) {
-          // return SwiperCard(
-          //   movies: snapshot.data,
-          // );
-          return SwiperCasero(movies: snapshot.data);
+          return SwiperCard(
+            movies: snapshot.data,
+          );
+          // return Expanded(child: SwiperCasero(movies: snapshot.data));
         } else {
           return Container(
               height: 400,
               child: const Center(child: CircularProgressIndicator()));
         }
       },
+    );
+  }
+
+  Widget _footer(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Text(
+            'Populares',
+            style: Theme.of(context).textTheme.subtitle2,
+          ),
+          FutureBuilder(
+            future: moviesProvider.getPopular(),
+            initialData: [],
+            builder:
+                (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+              if (snapshot.hasData) {
+                return MoviesHorziontal(movies: snapshot.data);
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }
