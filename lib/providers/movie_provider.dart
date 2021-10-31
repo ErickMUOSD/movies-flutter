@@ -11,7 +11,7 @@ class MoviesProvider {
 
   //streams
   int _popularesPage = 0;
-  List<Movie>? _popularsList;
+  List<Movie>? _popularsList = [];
 
   final _popularsStream = StreamController<List<Movie>>.broadcast();
 

@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   final moviesProvider = MoviesProvider();
   @override
   Widget build(BuildContext context) {
+    moviesProvider.getPopular();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
     return FutureBuilder(
       future: moviesProvider.getNowPlaying(),
       initialData: [],
-      builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<dynamic>?> snapshot) {
         if (snapshot.hasData) {
           return SwiperCard(
             movies: snapshot.data,
@@ -55,13 +56,16 @@ class HomePage extends StatelessWidget {
             'Populares',
             style: Theme.of(context).textTheme.subtitle2,
           ),
-          FutureBuilder(
-            future: moviesProvider.getPopular(),
+          StreamBuilder(
+            stream: moviesProvider.popularStream,
             initialData: [],
             builder:
                 (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
               if (snapshot.hasData) {
-                return MoviesHorziontal(movies: snapshot.data);
+                return MoviesHorziontal(
+                  movies: snapshot.data,
+                  nextPage: moviesProvider.getPopular,
+                );
               } else {
                 return const CircularProgressIndicator();
               }
