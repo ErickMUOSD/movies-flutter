@@ -26,22 +26,29 @@ class MoviesHorziontal extends StatelessWidget {
         controller: _pageController,
         itemCount: movies!.length,
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => _cards(movies![index]),
+        itemBuilder: (context, index) => _cards(movies![index], context),
       ),
     );
   }
 
-  Widget _cards(Movie movies) {
-    return Container(
+  Widget _cards(Movie movie, BuildContext context) {
+    final card = Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: FadeInImage(
           placeholder: const AssetImage('assets/placeholder.png'),
-          image: NetworkImage(movies.getPosterImg()),
+          image: NetworkImage(movie.getPosterImg()),
           fit: BoxFit.cover,
         ),
       ),
+    );
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, 'detail', arguments: movie);
+      },
+      child: card,
     );
   }
 }
