@@ -33,7 +33,7 @@ class MoviesHorziontal extends StatelessWidget {
 
   Widget _cards(Movie movies) {
     return Container(
-      padding: const EdgeInsets.only(right: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: FadeInImage(
