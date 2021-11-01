@@ -16,10 +16,7 @@ class HomePage extends StatelessWidget {
           title: const Text('Movies '),
           backgroundColor: Colors.indigoAccent,
           actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
-            )
+            IconButton(icon: const Icon(Icons.search), onPressed: () {})
           ],
         ),
         body: Column(
