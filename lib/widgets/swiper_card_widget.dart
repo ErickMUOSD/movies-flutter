@@ -15,17 +15,14 @@ class SwiperCard extends StatelessWidget {
         height: heightScreen * 0.4,
         child: Swiper(
             layout: SwiperLayout.STACK,
-            itemWidth: 250.0,
+            itemWidth: 200.0,
             itemCount: movies!.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: FadeInImage(
-                  placeholder: const AssetImage('assets/placeholder.png'),
-                  image: NetworkImage(movies![index].getPosterImg()),
-                  fit: BoxFit.fill,
-                ),
+              return FadeInImage(
+                placeholder: const AssetImage('assets/placeholder.png'),
+                image: NetworkImage(movies![index].getPosterImg()),
+                fit: BoxFit.fitHeight,
               );
             }),
       );

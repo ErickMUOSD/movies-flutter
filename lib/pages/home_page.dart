@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[swiperCard(), _footer(context)]),
       ),
     );
@@ -55,7 +55,10 @@ class HomePage extends StatelessWidget {
         children: [
           Text(
             'Populares',
-            style: Theme.of(context).textTheme.subtitle2,
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          SizedBox(
+            height: 10.0,
           ),
           StreamBuilder(
             stream: moviesProvider.popularStream,
