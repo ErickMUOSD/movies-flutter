@@ -60,7 +60,7 @@ class Actor {
     if (profilePath != null) {
       return 'https://image.tmdb.org/t/p/w500/$profilePath';
     } else {
-      return 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png';
+      return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
     }
   }
 }
