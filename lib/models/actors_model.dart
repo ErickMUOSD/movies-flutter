@@ -2,10 +2,10 @@ class Cast {
   List<Actor> actors = [];
   Cast.fromJSonMap(List<dynamic> jsonList) {
     if (jsonList.isNotEmpty) {
-      jsonList.forEach((element) {
+      for (var element in jsonList) {
         final actor = Actor.fromJsonMap(element);
         actors.add(actor);
-      });
+      }
     }
   }
 }
