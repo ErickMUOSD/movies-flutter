@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:movies/models/movie_model.dart';
 
 class SwiperCard extends StatelessWidget {
   final List<dynamic>? movies;
@@ -15,14 +16,28 @@ class SwiperCard extends StatelessWidget {
         height: heightScreen * 0.4,
         child: Swiper(
             layout: SwiperLayout.STACK,
-            itemWidth: 200.0,
+            itemWidth: 140.0,
             itemCount: movies!.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return FadeInImage(
-                placeholder: const AssetImage('assets/placeholder.png'),
-                image: NetworkImage(movies![index].getPosterImg()),
-                fit: BoxFit.fitHeight,
+              movies![index].uniqueId = '${movies![index].id}-card';
+
+              return Hero(
+                tag: movies![index].uniqueId.toString(),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'detail',
+                          arguments: movies![index]);
+                    },
+                    child: FadeInImage(
+                      placeholder: const AssetImage('assets/placeholder.png'),
+                      image: NetworkImage(movies![index].getPosterImg()),
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                ),
               );
             }),
       );

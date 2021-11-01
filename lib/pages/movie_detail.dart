@@ -57,7 +57,7 @@ class MovieDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Hero(
-            tag: movie!.id.toString(),
+            tag: movie!.uniqueId.toString(),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Image(

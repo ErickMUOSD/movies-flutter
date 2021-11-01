@@ -30,7 +30,7 @@ class Movie {
   bool? video;
   double? voteAverage;
   int? voteCount;
-
+  String? uniqueId;
   Movie({
     this.adult,
     this.backdropPath,
