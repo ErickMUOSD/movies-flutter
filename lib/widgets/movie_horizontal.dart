@@ -39,7 +39,7 @@ class MoviesHorziontal extends StatelessWidget {
         child: FadeInImage(
           placeholder: const AssetImage('assets/placeholder.png'),
           image: NetworkImage(movie.getPosterImg()),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
     );

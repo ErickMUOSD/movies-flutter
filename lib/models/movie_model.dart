@@ -69,4 +69,12 @@ class Movie {
       return 'https://www.lasallevictoria.edu.mx/wp-content/uploads/woocommerce-placeholder.png';
     }
   }
+
+  String getBackgroundImg() {
+    if (backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    } else {
+      return 'https://www.lasallevictoria.edu.mx/wp-content/uploads/woocommerce-placeholder.png';
+    }
+  }
 }

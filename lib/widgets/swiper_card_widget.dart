@@ -7,7 +7,6 @@ class SwiperCard extends StatelessWidget {
   const SwiperCard({Key? key, required this.movies}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final widthScreen = MediaQuery.of(context).size.width;
     final heightScreen = MediaQuery.of(context).size.height;
     if (movies!.isNotEmpty) {
       return Container(
@@ -25,7 +24,7 @@ class SwiperCard extends StatelessWidget {
                 child: FadeInImage(
                   placeholder: const AssetImage('assets/placeholder.png'),
                   image: NetworkImage(movies![index].getPosterImg()),
-                  fit: BoxFit.contain,
+                  fit: BoxFit.fill,
                 ),
               );
             }),
