@@ -69,7 +69,7 @@ class Movie {
     if (posterPath != null) {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
     } else {
-      return 'https://www.lasallevictoria.edu.mx/wp-content/uploads/woocommerce-placeholder.png';
+      return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
     }
   }
 
@@ -77,7 +77,7 @@ class Movie {
     if (backdropPath != null) {
       return 'https://image.tmdb.org/t/p/w500/$backdropPath';
     } else {
-      return 'https://www.lasallevictoria.edu.mx/wp-content/uploads/woocommerce-placeholder.png';
+      return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
     }
   }
 
