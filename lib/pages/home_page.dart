@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
             'Populares',
             style: Theme.of(context).textTheme.headline6,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           StreamBuilder(

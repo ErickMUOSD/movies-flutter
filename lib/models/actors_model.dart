@@ -60,7 +60,7 @@ class Actor {
     if (profilePath != null) {
       return 'https://image.tmdb.org/t/p/w500/$profilePath';
     } else {
-      return 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg';
+      return 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png';
     }
   }
 }
