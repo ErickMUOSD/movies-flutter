@@ -41,7 +41,7 @@ class MoviesProvider {
 
   Future<List<Movie>?> getPopular() async {
     if (_loading) return [];
-
+    _loading = true;
     _popularesPage++;
     final url = Uri.https(_url, '3/movie/popular', {
       'api_key': _apiKey,
@@ -51,7 +51,7 @@ class MoviesProvider {
     final response = await getResponse(url);
     _popularsList!.addAll(response!);
     popularSink(_popularsList!);
-    _loading = true;
+    _loading = false;
     return response;
   }
 

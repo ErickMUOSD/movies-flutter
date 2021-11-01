@@ -15,6 +15,7 @@ class MoviesHorziontal extends StatelessWidget {
       if (_pageController.position.pixels >=
           _pageController.position.maxScrollExtent - 200) {
         nextPage!();
+        print('loaad');
       }
     });
 
