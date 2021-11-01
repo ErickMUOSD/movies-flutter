@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+
 class Movies {
   List<Movie>? items = [];
   Movies();
@@ -75,6 +78,16 @@ class Movie {
       return 'https://image.tmdb.org/t/p/w500/$backdropPath';
     } else {
       return 'https://www.lasallevictoria.edu.mx/wp-content/uploads/woocommerce-placeholder.png';
+    }
+  }
+
+  Color getColorVoteCount() {
+    if (voteAverage! >= 8) return Colors.green;
+    if (voteAverage! >= 6 && voteAverage! <= 7.9) return Colors.amber;
+    if (voteAverage! <= 5.9) {
+      return Colors.red;
+    } else {
+      return Colors.grey;
     }
   }
 }

@@ -70,7 +70,10 @@ class MovieDetail extends StatelessWidget {
             Text(movie.originalTitle.toString()),
             Row(
               children: [
-                Icon(Icons.star_border),
+                Icon(
+                  Icons.star_border,
+                  color: movie.getColorVoteCount(),
+                ),
                 Text(movie.voteAverage.toString())
               ],
             )
@@ -82,7 +85,7 @@ class MovieDetail extends StatelessWidget {
 
   _description(Movie? movie) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Text(
         movie!.overview.toString(),
         textAlign: TextAlign.justify,
