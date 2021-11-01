@@ -20,9 +20,9 @@ class HomePage extends StatelessWidget {
                 icon: const Icon(Icons.search),
                 onPressed: () {
                   showSearch(
-                      context: context,
-                      delegate: DataSearch(),
-                      query: 'Search...');
+                    context: context,
+                    delegate: DataSearch(),
+                  );
                 })
           ],
         ),

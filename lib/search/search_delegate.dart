@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DataSearch extends SearchDelegate {
+  String _selection = '';
+  final peliculas = ['BEe', 'jeilo verde', 'Suicide squad', 'im a legend'];
+  final populars = ['Spider', 'Avengers'];
   @override
   List<Widget>? buildActions(BuildContext context) {
     // acciones de nuestro appBar
@@ -29,12 +32,33 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // builder los resultados
-    return Container();
+    return Center(
+        child: Container(
+      height: 100,
+      width: 100,
+      color: Colors.amber,
+      child: Text(_selection),
+    ));
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // builder de las sugerencias
-    return Container();
+    final listaSug = (query.isEmpty)
+        ? peliculas
+        : peliculas
+            .where((element) => element.toLowerCase().startsWith(query))
+            .toList();
+    return ListView.builder(
+      itemCount: listaSug.length,
+      itemBuilder: (BuildContext context, index) {
+        return ListTile(
+          leading: const Icon(Icons.movie),
+          title: Text(listaSug[index]),
+          onTap: () {
+            _selection = listaSug[index];
+          },
+        );
+      },
+    );
   }
 }
