@@ -34,12 +34,15 @@ class MoviesHorziontal extends StatelessWidget {
   Widget _cards(Movie movie, BuildContext context) {
     final card = Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: FadeInImage(
-          placeholder: const AssetImage('assets/placeholder.png'),
-          image: NetworkImage(movie.getPosterImg()),
-          fit: BoxFit.fill,
+      child: Hero(
+        tag: movie.id.toString(),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: FadeInImage(
+            placeholder: const AssetImage('assets/placeholder.png'),
+            image: NetworkImage(movie.getPosterImg()),
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );
