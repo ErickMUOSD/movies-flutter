@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movies/models/movie_model.dart';
+import 'package:movies/providers/movie_provider.dart';
 
 class DataSearch extends SearchDelegate {
-  String _selection = '';
-  final peliculas = ['BEe', 'jeilo verde', 'Suicide squad', 'im a legend'];
-  final populars = ['Spider', 'Avengers'];
+  final moviesPRovider = MoviesProvider();
   @override
   List<Widget>? buildActions(BuildContext context) {
     // acciones de nuestro appBar
@@ -32,33 +32,47 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // builder los resultados
-    return Center(
-        child: Container(
-      height: 100,
-      width: 100,
-      color: Colors.amber,
-      child: Text(_selection),
-    ));
+    // return Center(
+    //     child: Container(
+    //   height: 100,
+    //   width: 100,
+    //   color: Colors.amber,
+    //   child: Text(_selection),
+    // ));
+    return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final listaSug = (query.isEmpty)
-        ? peliculas
-        : peliculas
-            .where((element) => element.toLowerCase().startsWith(query))
-            .toList();
-    return ListView.builder(
-      itemCount: listaSug.length,
-      itemBuilder: (BuildContext context, index) {
-        return ListTile(
-          leading: const Icon(Icons.movie),
-          title: Text(listaSug[index]),
-          onTap: () {
-            _selection = listaSug[index];
-          },
-        );
-      },
-    );
+    if (query.isEmpty) {
+      return Container();
+    } else {
+      return FutureBuilder(
+        future: moviesPRovider.searchMovie(query),
+        builder: (BuildContext context, AsyncSnapshot<List<Movie>?> snapshot) {
+          if (snapshot.hasData) {
+            return ListView(
+              children: snapshot.data!.map((e) {
+                return ListTile(
+                  leading: FadeInImage(
+                    placeholder: const AssetImage('assets/placeholder.png'),
+                    image: NetworkImage(e.getPosterImg()),
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
+                  subtitle: Text(e.title.toString()),
+                  onTap: () {
+                    close(context, null);
+                    Navigator.pushNamed(context, 'detail', arguments: e);
+                  },
+                );
+              }).toList(),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      );
+    }
   }
 }

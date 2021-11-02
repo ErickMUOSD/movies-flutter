@@ -66,18 +66,18 @@ class Movie {
   }
 
   String getPosterImg() {
-    if (posterPath != null) {
-      return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    if (posterPath == null) {
+      return 'https://cdn11.bigcommerce.com/s-auu4kfi2d9/stencil/59512910-bb6d-0136-46ec-71c445b85d45/e/933395a0-cb1b-0135-a812-525400970412/icons/icon-no-image.svg';
     } else {
-      return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
     }
   }
 
   String getBackgroundImg() {
-    if (backdropPath != null) {
-      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    if (backdropPath == null) {
+      return 'https://cdn11.bigcommerce.com/s-auu4kfi2d9/stencil/59512910-bb6d-0136-46ec-71c445b85d45/e/933395a0-cb1b-0135-a812-525400970412/icons/icon-no-image.svg';
     } else {
-      return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
+      return 'https://image.tmdb.org/t/p/w500$backdropPath';
     }
   }
 
