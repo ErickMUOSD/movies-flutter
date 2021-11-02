@@ -3,7 +3,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:movies/models/movie_model.dart';
 
 class SwiperCard extends StatelessWidget {
-  final List<dynamic>? movies;
+  final List<Movie>? movies;
 
   const SwiperCard({Key? key, required this.movies}) : super(key: key);
   @override
@@ -20,25 +20,29 @@ class SwiperCard extends StatelessWidget {
             itemCount: movies!.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              movies![index].uniqueId = '${movies![index].id}-card';
+              if (movies![index] != null) {
+                movies![index].uniqueId = '${movies![index].id}-card';
 
-              return Hero(
-                tag: movies![index].uniqueId.toString(),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'detail',
-                          arguments: movies![index]);
-                    },
-                    child: FadeInImage(
-                      placeholder: const AssetImage('assets/placeholder.png'),
-                      image: NetworkImage(movies![index].getPosterImg()),
-                      fit: BoxFit.fitHeight,
+                return Hero(
+                  tag: movies![index].uniqueId.toString(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'detail',
+                            arguments: movies![index]);
+                      },
+                      child: FadeInImage(
+                        placeholder: const AssetImage('assets/placeholder.png'),
+                        image: NetworkImage(movies![index].getPosterImg()),
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ),
-                ),
-              );
+                );
+              } else {
+                return Image.asset('assets/placeholder.png');
+              }
             }),
       );
     } else {

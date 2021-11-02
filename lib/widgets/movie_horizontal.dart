@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/models/movie_model.dart';
 
 class MoviesHorziontal extends StatelessWidget {
-  final List<dynamic>? movies;
+  final List<Movie>? movies;
   final Function? nextPage;
   MoviesHorziontal({Key? key, required this.movies, required this.nextPage})
       : super(key: key);

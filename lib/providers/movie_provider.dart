@@ -41,18 +41,25 @@ class MoviesProvider {
 
   Future<List<Movie>?> getPopular() async {
     if (_loading) return [];
+
     _loading = true;
     _popularesPage++;
+
     final url = Uri.https(_url, '3/movie/popular', {
       'api_key': _apiKey,
       'languaje': _languaje,
       'page': _popularesPage.toString()
     });
+
     final response = await getResponse(url);
-    _popularsList!.addAll(response!);
-    popularSink(_popularsList!);
-    _loading = false;
-    return response;
+    if (response!.isNotEmpty) {
+      _popularsList!.addAll(response);
+      popularSink(_popularsList!);
+      _loading = false;
+      return response;
+    } else {
+      return [];
+    }
   }
 
   Future<List<Actor>> getCast(String peliId) async {
